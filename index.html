@@ -17,7 +17,16 @@
 
       const className = "container";
       const children = "Hello world";
-      const element = <div className={className}>{children}</div>;
+      const props = { className, children };
+      const props2 = { className: "neo-container" };
+      const element = (
+        <div {...props} className="other-container" {...props2}>
+          goodbye world
+        </div>
+      );
+      // remember {} is interpolation in jsx not the object. so we are spreading object inside the interpolation.
+      // if we have 2 similar props whatever comes later will override the one that came previously in this example className="other-container" will override the once that came early
+      // and children syntax overrides the children prop.
 
       ReactDOM.createRoot(root).render(element);
     </script>
