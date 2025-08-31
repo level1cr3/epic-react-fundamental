@@ -14,9 +14,66 @@
 
     <script type="text/babel" data-type="module">
       const root = document.querySelector("#root");
-      const element = <div className="container">Hello World</div>;
 
-      ReactDOM.createRoot(root).render(element);
+      const className = "container";
+      const children = "Hello world";
+      const element = <div className={className}>{children}</div>;
+      const element2 = <div className={className} children={children} />;
+
+      ReactDOM.createRoot(root).render([element, element2]);
     </script>
   </body>
 </html>
+
+<!-- 
+ interpolation. The idea behind interpolation is embedding one thing into
+another thing. examples : like html has scripts and style. or using js string literal to interpolate variables. or some arrow functions etc 
+string literal only takes expressions.
+
+In JavaScript, an expression is anything that produces a value.
+That value can then be used inside a template literal ${ ... }, assigned to a variable, passed as an argument, etc.
+
+🔎 Examples of expressions
+
+All of these are expressions because they produce a value:
+
+2 + 3             // 5
+"Hello".toUpperCase()  // "HELLO"
+true && false     // false
+Math.random()     // some number
+user.name         // whatever user.name is
+[1, 2, 3].length  // 3
+
+
+You can use them in template literals:
+
+const user = { name: "Alice", age: 25 };
+
+console.log(`Hello, ${user.name}! You are ${user.age + 5} years old.`);
+
+🚫 What’s not an expression?
+
+Things that don’t produce a value directly, e.g. statements:
+
+if (true) { }     // statement
+for (...) { }     // statement
+while (...) { }   // statement
+function foo() {} // declaration (not a value by itself)
+
+
+These are statements, not expressions, so you can’t do:
+
+`Hi ${if (true) { "yes" }}`  // ❌ SyntaxError
+
+✅ Expression vs Statement (in short)
+
+Expression → produces a value (5 * 2, "abc", x > 0 ? "yes" : "no")
+
+Statement → performs an action (if, for, return, function)
+
+👉 So inside ${ ... }, you can only put expressions, not full statements.
+
+Do you want me to also give you a list of the most common expression types in JS (arithmetic, logical, function calls, ternary, etc.) so you have a reference?
+
+Don't write to much logic in the interpolation. write that outside
+-->
