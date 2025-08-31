@@ -12,33 +12,24 @@
     <script src="/public/react-dom.development.js"></script>
     <script type="module">
       const root = document.querySelector("#root");
-      const hello = React.createElement("span", null, "Hello");
-      const world = React.createElement("span", null, "World");
 
-      // option 1
-      const divContainer1 = React.createElement("div", {
-        className: "container",
-        children: [hello, " ", world],
-      });
-
-      // option 2 // this requires each element in array to have unique key. so instead
-      // of null in config we could pass { key: 1 }
-      // const divContainer2 = React.createElement(
-      //   "div",
-      //   { className: "container" },
-      //   [hello, " ", world]
-      // );
-
-      // option 3
-      const divContainer3 = React.createElement(
+      const element = React.createElement(
         "div",
         { className: "container" },
-        React.createElement("span", null, "Hello"),
-        " ",
-        React.createElement("span", null, "World")
+        React.createElement("p", null, "Here's sam's favorite food"),
+        React.createElement(
+          "ul",
+          {
+            className: "sam-food",
+          },
+          React.createElement("li", null, "Green eggs"),
+          React.createElement("li", null, "Ham")
+        )
       );
 
-      ReactDOM.createRoot(root).render(divContainer3);
+      // with deep nesting this is starting to look bad and hard to read.
+
+      ReactDOM.createRoot(root).render(element);
     </script>
   </body>
 </html>
