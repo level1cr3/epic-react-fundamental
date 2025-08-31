@@ -12,17 +12,33 @@
     <script src="/public/react-dom.development.js"></script>
     <script type="module">
       const root = document.querySelector("#root");
-      const element = React.createElement(
+      const hello = React.createElement("span", null, "Hello");
+      const world = React.createElement("span", null, "World");
+
+      // option 1
+      const divContainer1 = React.createElement("div", {
+        className: "container",
+        children: [hello, " ", world],
+      });
+
+      // option 2 // this requires each element in array to have unique key. so instead
+      // of null in config we could pass { key: 1 }
+      // const divContainer2 = React.createElement(
+      //   "div",
+      //   { className: "container" },
+      //   [hello, " ", world]
+      // );
+
+      // option 3
+      const divContainer3 = React.createElement(
         "div",
         { className: "container" },
-        "Hello World"
+        React.createElement("span", null, "Hello"),
+        " ",
+        React.createElement("span", null, "World")
       );
-      // in react we don't mutate the element we create.
-      // Instead we pass the property we want that element to create.
-      console.log(element);
-      // this element is just an js object. which is a UI descriptor of the element.
-      // we will use reactDOM render() for create DOM element out of it.
-      ReactDOM.createRoot(root).render(element);
+
+      ReactDOM.createRoot(root).render(divContainer3);
     </script>
   </body>
 </html>
