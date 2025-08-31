@@ -6,16 +6,23 @@
     <title>Document</title>
   </head>
   <body>
-    <script type="module">
-      const root = document.createElement("div");
-      root.id = "root";
-      const div = document.createElement("div");
-      div.className = "container";
-      div.textContent = "Hello world";
-      root.append(div);
-      document.body.prepend(root);
-    </script>
+    <div id="root"></div>
 
-    <script type="text/javascript"></script>
+    <script src="/public/react.development.js"></script>
+    <script src="/public/react-dom.development.js"></script>
+    <script type="module">
+      const root = document.querySelector("#root");
+      const element = React.createElement(
+        "div",
+        { className: "container" },
+        "Hello World"
+      );
+      // in react we don't mutate the element we create.
+      // Instead we pass the property we want that element to create.
+      console.log(element);
+      // this element is just an js object. which is a UI descriptor of the element.
+      // we will use reactDOM render() for create DOM element out of it.
+      ReactDOM.createRoot(root).render(element);
+    </script>
   </body>
 </html>
