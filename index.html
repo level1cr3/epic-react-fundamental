@@ -10,24 +10,11 @@
 
     <script src="/public/react.development.js"></script>
     <script src="/public/react-dom.development.js"></script>
-    <script type="module">
+    <script type="module" src="/public/babel.min.js"></script>
+
+    <script type="text/babel" data-type="module">
       const root = document.querySelector("#root");
-
-      const element = React.createElement(
-        "div",
-        { className: "container" },
-        React.createElement("p", null, "Here's sam's favorite food"),
-        React.createElement(
-          "ul",
-          {
-            className: "sam-food",
-          },
-          React.createElement("li", null, "Green eggs"),
-          React.createElement("li", null, "Ham")
-        )
-      );
-
-      // with deep nesting this is starting to look bad and hard to read.
+      const element = <div className="container">Hello World</div>;
 
       ReactDOM.createRoot(root).render(element);
     </script>
