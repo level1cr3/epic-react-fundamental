@@ -15,18 +15,26 @@
     <script type="text/babel" data-type="module">
       const root = document.querySelector("#root");
 
-      const className = "container";
-      const children = "Hello world";
-      const props = { className, children };
-      const props2 = { className: "neo-container" };
       const element = (
-        <div {...props} className="other-container" {...props2}>
-          goodbye world
+        <div className="container">
+          <p>Here is sam favorite food</p>
+          <ul className="food">
+            <li>Mango</li>
+            <li>orange</li>
+          </ul>
         </div>
       );
-      // remember {} is interpolation in jsx not the object. so we are spreading object inside the interpolation.
-      // if we have 2 similar props whatever comes later will override the one that came previously in this example className="other-container" will override the once that came early
-      // and children syntax overrides the children prop.
+      /*
+        Why we can't use class in jsx property why className ?
+        > Reason is JSX properties are lot similar to DOM properties then they are to the html attributes.
+
+        > we can see below error message says DOM property not html attribute. Because remember this JSX will transpile into React.CreateElement syntax.
+        Warning: Invalid DOM property `class`. Did you mean `className`? Error Component Stack
+        at ul (<anonymous>)
+        at div (<anonymous>)
+
+          With jsx nesting is easy.
+      */
 
       ReactDOM.createRoot(root).render(element);
     </script>
