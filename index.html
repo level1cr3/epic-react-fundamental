@@ -15,24 +15,16 @@
     <script type="text/babel" data-type="module">
       const root = document.querySelector("#root");
 
-      const message = ({ children }) => {
-        console.log("calling message", children);
-
+      const Message = ({ children }) => {
         return <div className="message box">{children}</div>;
       };
 
       const element = (
         <div className="container">
-          {React.createElement(message, null, "Hello World")}
-          {React.createElement(message, { children: "Goodbye World" })}
+          <Message>Hello World</Message>
+          <Message>Goodbye World</Message>
         </div>
       );
-
-      console.log(element);
-      // when called message in previous example we invoked the message function
-      // but when we pass the message function to react. It will only invoke this
-      // function when necessary. when react is rendering them.
-
       ReactDOM.createRoot(root).render(element);
     </script>
   </body>
