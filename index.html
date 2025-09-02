@@ -15,14 +15,40 @@
     <script type="text/babel" data-type="module">
       const root = document.querySelector("#root");
 
-      const Message = ({ children }) => {
-        return <div className="message box">{children}</div>;
+      const calculate = (left, operator, right) => {
+        switch (operator) {
+          case "+":
+            return left + right;
+          case "-":
+            return left - right;
+          case "*":
+            return left * right;
+          case "/":
+            return right !== 0 ? left / right : "Error division by form";
+          default:
+            return "Invalid Operator";
+        }
+      };
+
+      const Calculator = ({ left, operator, right }) => {
+        console.log(typeof left);
+
+        return (
+          <div className="container">
+            <code>
+              {left} {operator} {right} ={" "}
+              <output>{calculate(left, operator, right)}</output>
+            </code>
+          </div>
+        );
       };
 
       const element = (
         <div className="container">
-          <Message>Hello World</Message>
-          <Message>Goodbye World</Message>
+          <Calculator left={1} operator="+" right={2} />
+          <Calculator left={3} operator="-" right={2} />
+          <Calculator left={2} operator="*" right={2} />
+          <Calculator left={1} operator="/" right={2} />
         </div>
       );
       ReactDOM.createRoot(root).render(element);
