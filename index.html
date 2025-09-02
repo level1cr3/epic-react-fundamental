@@ -15,32 +15,20 @@
     <script type="text/babel" data-type="module">
       const root = document.querySelector("#root");
 
-      const element = (
-        <>
-          <p>Here is sam favorite food</p>
-          <ul className="food">
-            <li>Mango</li>
-            <li>orange</li>
-          </ul>
-        </>
-      );
+      const Greeting = (props) => {
+        return <h1>Hello {props.name}</h1>;
+      };
 
-      /*
-          Why do we need fragment ? 
-                const elementV2 = 
-        React.createElement("p", null, "My favorite food"),
-        React.createElement("p", null, "My favorite food");
-
-        because above code is not valid js. we can't assign 2 values to single variable.
-        maybe we could put these in array that will work. we would have to pass unique key.
-        but array are used for array of collection.
-
-        NOTE: basically use React.Fragment or <></> in jsx when we want to return multiple component from jsx.
-        Fragment is special kind of element that doesn't have the DOM representation.  
-
-      */
-
-      ReactDOM.createRoot(root).render(element);
+      ReactDOM.createRoot(root).render(<Greeting name="World" />);
     </script>
   </body>
 </html>
+
+<!-- 
+custom components : React components are functions which accept an object and return something that is render-able.
+
+Typically things that are render-able are other react components or string.
+
+ 
+
+-->
