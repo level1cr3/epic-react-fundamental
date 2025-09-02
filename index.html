@@ -15,11 +15,18 @@
     <script type="text/babel" data-type="module">
       const root = document.querySelector("#root");
 
-      const Greeting = (props) => {
-        return <h1>Hello {props.name}</h1>;
+      const message = ({ children }) => {
+        return <div className="message box">{children}</div>;
       };
 
-      ReactDOM.createRoot(root).render(<Greeting name="World" />);
+      const element = (
+        <div className="container">
+          {message({ children: "Hello World" })}
+          {message({ children: "Goodbye World" })}
+        </div>
+      );
+
+      ReactDOM.createRoot(root).render(element);
     </script>
   </body>
 </html>
