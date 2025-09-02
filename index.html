@@ -16,26 +16,24 @@
       const root = document.querySelector("#root");
 
       const message = ({ children }) => {
+        console.log("calling message", children);
+
         return <div className="message box">{children}</div>;
       };
 
       const element = (
         <div className="container">
-          {message({ children: "Hello World" })}
-          {message({ children: "Goodbye World" })}
+          {React.createElement(message, null, "Hello World")}
+          {React.createElement(message, { children: "Goodbye World" })}
         </div>
       );
+
+      console.log(element);
+      // when called message in previous example we invoked the message function
+      // but when we pass the message function to react. It will only invoke this
+      // function when necessary. when react is rendering them.
 
       ReactDOM.createRoot(root).render(element);
     </script>
   </body>
 </html>
-
-<!-- 
-custom components : React components are functions which accept an object and return something that is render-able.
-
-Typically things that are render-able are other react components or string.
-
- 
-
--->
