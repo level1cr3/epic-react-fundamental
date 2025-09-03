@@ -1,10 +1,16 @@
-const operations = {
-  "+": (left: number, right: number) => left + right,
-  "-": (left: number, right: number) => left - right,
-  "*": (left: number, right: number) => left * right,
-  "/": (left: number, right: number) => left / right,
-  "**": (left: number, right: number) => left ** right,
-  "%": (left: number, right: number) => left % right,
+type OperatorType = "+" | "-" | "*" | "/" | "%" | "**";
+
+type OperationFn = (left: number, right: number) => number;
+
+type Operation = Record<OperatorType, OperationFn>;
+
+const operations: Operation = {
+  "+": (left, right) => left + right,
+  "-": (left, right) => left - right,
+  "*": (left, right) => left * right,
+  "/": (left, right) => left / right,
+  "**": (left, right) => left ** right,
+  "%": (left, right) => left % right,
 };
 
 type Props = {
