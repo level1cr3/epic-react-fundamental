@@ -7,6 +7,8 @@ function App() {
       <Calculator left={1} operator="-" right={2} />
       <Calculator left={1} operator="*" right={2} />
       <Calculator left={1} operator="/" right={2} />
+      <Calculator left={2} operator="%" right={2} />
+      <Calculator left={4} operator="**" right={2} />
     </>
   );
 }
