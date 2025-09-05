@@ -1,14 +1,27 @@
-import Calculator from "./components/Calculator";
-
 function App() {
   return (
     <>
-      <Calculator />
-      <Calculator left={1} right={2} />
-      <Calculator left={1} operator="*" />
-      <Calculator right={2} />
-      <Calculator left={2} operator="%" right={2} />
-      <Calculator left={4} operator="**" right={2} />
+      <div
+        className="box box--small"
+        style={{ backgroundColor: "lightblue", fontStyle: "italic" }}
+      >
+        small lightblue box
+      </div>
+      <div
+        className="box box--medium"
+        style={{ backgroundColor: "pink", fontStyle: "italic" }}
+      >
+        medium pink box
+      </div>
+      <div
+        className="box box--large"
+        style={{ backgroundColor: "orange", fontStyle: "italic" }}
+      >
+        large orange box
+      </div>
+      <div className="box" style={{ fontStyle: "italic" }}>
+        sizeless colorless box
+      </div>
     </>
   );
 }
