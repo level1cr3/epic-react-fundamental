@@ -1,27 +1,21 @@
+import Box from "./components/Box";
+
 function App() {
   return (
     <>
-      <div
-        className="box box--small"
-        style={{ backgroundColor: "lightblue", fontStyle: "italic" }}
-      >
+      <Box size="small" style={{ backgroundColor: "lightblue" }}>
         small lightblue box
-      </div>
-      <div
-        className="box box--medium"
-        style={{ backgroundColor: "pink", fontStyle: "italic" }}
-      >
+      </Box>
+
+      <Box size="medium" style={{ backgroundColor: "pink" }}>
         medium pink box
-      </div>
-      <div
-        className="box box--large"
-        style={{ backgroundColor: "orange", fontStyle: "italic" }}
-      >
+      </Box>
+
+      <Box size="large" style={{ backgroundColor: "orange" }}>
         large orange box
-      </div>
-      <div className="box" style={{ fontStyle: "italic" }}>
-        sizeless colorless box
-      </div>
+      </Box>
+
+      <Box>sizeless colorless box</Box>
     </>
   );
 }
