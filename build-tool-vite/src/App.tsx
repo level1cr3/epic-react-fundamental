@@ -1,22 +1,13 @@
 function App() {
+  const logFormData = (formData: FormData) => {
+    console.log(formData);
+  };
+
   return (
     <>
       <form
-        action="/path/to/server"
-        method="POST"
-        encType="multipart/form-data"
-        onSubmit={(event) => {
-          event.preventDefault();
-          // once we add onSubmit and preventDefault(), then we don't have to worry about other attributes of form like
-          // action, method, encType. Because now browser is not making the request we would be doing that using fetch or axios and there we would mention method type and encryption etc.
-
-          const formdata = new FormData(event.currentTarget);
-          console.log({
-            form: event.currentTarget,
-            formdata,
-            entries: Object.fromEntries(formdata),
-          });
-        }}
+        action={logFormData}
+        // in react we can pass the function to the action property of form. and it will prevent the default form submission behavior for us and also give us the form data.
       >
         <div>
           <label htmlFor="usernameInput">Username: </label>
