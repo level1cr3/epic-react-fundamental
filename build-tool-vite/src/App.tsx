@@ -1,21 +1,13 @@
-import Box from "./components/Box";
-
 function App() {
   return (
     <>
-      <Box size="small" style={{ backgroundColor: "lightblue" }}>
-        small lightblue box
-      </Box>
-
-      <Box size="medium" style={{ backgroundColor: "pink" }}>
-        medium pink box
-      </Box>
-
-      <Box size="large" style={{ backgroundColor: "orange" }}>
-        large orange box
-      </Box>
-
-      <Box>sizeless colorless box</Box>
+      <form action="">
+        <label htmlFor="usernameInput">Username: </label>
+        <input id="usernameInput" name="username" type="text" />
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+      </form>
     </>
   );
 }
