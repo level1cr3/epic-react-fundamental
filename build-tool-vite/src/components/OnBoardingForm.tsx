@@ -1,6 +1,16 @@
+import { useErrorBoundary } from "react-error-boundary";
+
 const OnBoardingForm = () => {
-  const logFormData = (formData: FormData) => {
-    console.log(Object.fromEntries(formData));
+  const { showBoundary } = useErrorBoundary(); // we can use showBoundary to manually trigger. showing error boundary when error occurs from async calls or event driven task.
+
+  const logFormData = async (formData: FormData) => {
+    try {
+      await new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("Task failed!")), 3000);
+      }); // this is not caught by error ErrorBoundary component. because it is async operation. it throws error outside of render cycle. for this we should use try catch.
+    } catch (error) {
+      showBoundary(error);
+    }
   };
 
   return (
@@ -98,8 +108,8 @@ const OnBoardingForm = () => {
           name="date"
           type="date"
           // throw error by uncommenting below code.
-          defaultValue={new Date("today").toISOString().slice(0, 10)}
-          //   defaultValue={new Date("today").toISOString().slice(0, 10)}
+          // defaultValue={new Date("today").toISOString().slice(0, 10)}
+          defaultValue={new Date().toISOString().slice(0, 10)}
         />
       </div>
       <div>
@@ -125,6 +135,44 @@ But if you want to initialize input to certain value that can be changed later w
 would use defaultValue
 
 defaultValue is react specific not the web.
+
+
+Other Errors : inside try catch if something performs asynchronous task. and this asynchronous task ends up throwing the error the try catch cannot handle that error.
+
+In React, if an error happens inside a component render or lifecycle (synchronous), React Error Boundaries can catch it.
+
+If it’s inside an async callback (like fetching data), React won’t catch it — you must use try/catch with async/await or .catch().
+
+They do not catch errors from:
+
+Asynchronous callbacks (setTimeout, Promise, fetch, etc.)
+
+Event handlers (you need a try/catch there yourself)
+
+✅ Summary:
+
+try/catch cannot catch errors inside async callbacks unless you await.
+
+async/await + try/catch = recommended for clean error handling in React apps.
+
+For UI crashes, use Error Boundaries (but they won’t help with async fetch errors).
+
+
+
+ try {
+      new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("Task failed!")), 3000);
+      }); 
+    } catch (error) {
+      alert(error);  
+    }
+
+
+ // this won't catch error either. i need it either use async await or. use the .catch() method in the promise land right   
+
+When JS reaches new Promise(...), no error is thrown synchronously.
+The error only happens later, inside the setTimeout callback.
+By then, the try/catch block has already finished running → nothing to catch.
 
 
 */
