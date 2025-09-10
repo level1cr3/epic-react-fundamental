@@ -5,7 +5,13 @@ import OnBoardingForm from "./components/OnBoardingForm";
 function App() {
   return (
     <>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+        onReset={(details) => {
+          console.log(details); // reset state of your app so error doesn't happen again.
+          // and then we could load form input if any in local storage.
+        }}
+      >
         <OnBoardingForm />
       </ErrorBoundary>
     </>

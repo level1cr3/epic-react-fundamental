@@ -175,4 +175,12 @@ The error only happens later, inside the setTimeout callback.
 By then, the try/catch block has already finished running → nothing to catch.
 
 
+Sometimes maybe you want user to try again. Like for example it was their network error and now it is resolved.
+Keep in mind resetErrorBoundary on preserve the state of that component. it will be reloading that component. and we don't want to preserve the state because that state might be 
+the one that caused the error in first place.
+
+and if we want store the form data that they filled. like if they filled a long form and it all goes away now that is bad. but for that we should save that form state into 
+secure place like local storage etc. to handle that particular situation. so when their component loads again we could load all that data from local storage again.
+
+
 */
