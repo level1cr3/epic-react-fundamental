@@ -1,23 +1,49 @@
-import { ErrorBoundary } from "react-error-boundary";
-import ErrorFallback from "./components/ErrorFallback";
-import ArrayList from "./components/ArrayList";
+import { useState } from "react";
+
+const allItems = [
+  { id: "apple", value: "Apple" },
+  { id: "orange", value: "Orange" },
+  { id: "grape", value: "Grape" },
+  { id: "pear", value: "Pear" },
+];
 
 function App() {
+  const [items, setItems] = useState(allItems); // useState helps us make update to our UI.
+
+  const addItems = () => {
+    const itemsIds = items.map((item) => item.id);
+    const itemToAdd = allItems.filter((item) => !itemsIds.includes(item.id));
+    if (itemToAdd) {
+      setItems([...items, ...itemToAdd]);
+    }
+  };
+
+  const removeItem = (id: string) => {
+    const filteredItems = items.filter((item) => item.id !== id);
+    if (filteredItems) {
+      setItems([...filteredItems]);
+    }
+  };
+
   return (
     <>
-      <ErrorBoundary
-        FallbackComponent={ErrorFallback}
-        onReset={(details) => {
-          console.log(details); // reset state of your app so error doesn't happen again.
-          // and then we could load form input if any in local storage.
-        }}
-      >
-        <ArrayList />
-      </ErrorBoundary>
+      <button disabled={items.length >= allItems.length} onClick={addItems}>
+        add Item
+      </button>
+
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            <button onClick={() => removeItem(item.id)}>remove</button>
+            {item.value}
+            <input type="text" defaultValue={item.value} />
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
 
 export default App;
 
-// for errorBoundary to work we need to Extract form into component. because we need to catch the error. and error will only occur when that component is called or rendered.
+// This example clearly shows. What happens if we don't provide the key value to items. Just remove key value and see for your self how functionality don't work as they should
