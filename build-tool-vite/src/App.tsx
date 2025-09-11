@@ -1,6 +1,6 @@
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "./components/ErrorFallback";
-import OnBoardingForm from "./components/OnBoardingForm";
+import ArrayList from "./components/ArrayList";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
           // and then we could load form input if any in local storage.
         }}
       >
-        <OnBoardingForm />
+        <ArrayList />
       </ErrorBoundary>
     </>
   );
